@@ -6,7 +6,7 @@ Given /^I have a new rails app$/ do
     And a file named "Gemfile" with:
     """
       source 'http://rubygems.org'
-      gem 'rails', '3.1.0.rc6'
+      gem 'rails', '3.1.1'
       gem 'web-app-theme', :path => '../../../'
     """
     And I run `bundle install`
@@ -38,12 +38,6 @@ Then /^I should have a layout named "([^"]*)"$/ do |layout_name|
   steps %Q{
     When I run `ls -R app/views/layouts`
     Then the output should contain "#{layout_name}"
-  }
-end
-
-Given /^I have no stylesheets$/ do
-  steps %Q{
-    And I run `rm -r app/assets/stylesheets/*`
   }
 end
 

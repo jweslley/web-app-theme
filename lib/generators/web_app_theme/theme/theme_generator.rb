@@ -1,6 +1,6 @@
 module WebAppTheme
   class ThemeGenerator < Rails::Generators::Base
-    desc "Installs the application layout and creates the web_app_theme.css"
+    desc "Installs the application layout and configure web-app-theme"
     source_root File.expand_path('../templates', __FILE__)
     
     argument :layout_name, :type => :string, :default => 'application'
@@ -22,8 +22,10 @@ module WebAppTheme
       end                  
     end
     
-    def copy_theme_stylesheet 
-      template "web_app_theme.css.erb", "app/assets/stylesheets/web_app_theme.css"
+    def declare_stylesheet_theme
+      inject_into_file 'app/assets/stylesheets/application.css',
+        "\n *= require 'web-app-theme'\n *= require 'web-app-theme/#{options.theme}'",
+        :after => ' *= require_self'
     end
     
   protected

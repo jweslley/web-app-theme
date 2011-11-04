@@ -6,13 +6,13 @@ Feature: Layout generation
   Scenario: Generate assets
     Given I have a new rails app
     When I generate assets 
-    Then I should have a stylesheet named "web-app-theme/base.css"
-    And  I should have a stylesheet named "web-app-theme/themes/default/style.scss"
+    Then I should have a stylesheet named "web-app-theme.css"
+    And  I should have a stylesheet named "web-app-theme/default.scss"
 
   # script/generate theme
   Scenario: Generate assets with --theme=red
     Given I have a new rails app
     And I have no stylesheets
     When I generate assets choosing the "red" theme 
-    Then I should have a stylesheet named "web-app-theme/base.css"
-    And  I should have a stylesheet named "web-app-theme/themes/red/style.css"
+    Then I should have a stylesheet named "web-app-theme.css"
+    And  I should have a stylesheet named "web-app-theme/red.css"

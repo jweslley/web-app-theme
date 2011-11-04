@@ -5,12 +5,15 @@ module WebAppTheme
       class_option :theme,        :type => :string,   :default => :default,   :desc => 'Specify the layout theme to be copied'
 
       def copy_stylesheets
-        copy_file "stylesheets/web-app-theme/base.css"                , "app/assets/stylesheets/web-app-theme/base.css"
-        directory "stylesheets/web-app-theme/themes/#{options.theme}" , "app/assets/stylesheets/web-app-theme/themes/#{options.theme}"
+        ext = File.exist?(File.join(self.class.source_root, "stylesheets/web-app-theme/#{options.theme}.css")) ? '.css' : '.scss'
+        copy_file "stylesheets/web-app-theme.css"          , "app/assets/stylesheets/web-app-theme.css"
+        copy_file "stylesheets/web-app-theme/#{options.theme}#{ext}", "app/assets/stylesheets/web-app-theme/#{options.theme}#{ext}"
       end
 
       def copy_images
-        directory "images/web-app-theme/themes/#{options.theme}"      , "app/assets/images/web-app-theme/themes/#{options.theme}"
+        if File.exist?(File.join(self.class.source_root, "images/web-app-theme/#{options.theme}"))
+          directory "images/web-app-theme/#{options.theme}", "app/assets/images/web-app-theme/#{options.theme}"
+        end
       end
 
     end
