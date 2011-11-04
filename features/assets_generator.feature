@@ -7,7 +7,7 @@ Feature: Layout generation
     Given I have a new rails app
     When I generate assets 
     Then I should have a stylesheet named "web-app-theme/base.css"
-    And  I should have a stylesheet named "web-app-theme/themes/default/style.css"
+    And  I should have a stylesheet named "web-app-theme/themes/default/style.scss"
 
   # script/generate theme
   Scenario: Generate assets with --theme=red
